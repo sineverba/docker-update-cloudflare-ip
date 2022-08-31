@@ -11,7 +11,7 @@ Cloudflare is a trademark of Cloudflare itself.
 
 | CI / CD | Status |
 | ------- | ------ |
-| Semaphore | [![Build Status]()]() |
+| Semaphore | [![Build Status](https://sineverba.semaphoreci.com/badges/docker-update-cloudflare-ip/branches/master.svg?style=shields&key=941be431-667e-48be-ac26-0e15e69f934d)](https://sineverba.semaphoreci.com/projects/docker-update-cloudflare-ip) |
 
 
 ## Available architectures
@@ -61,6 +61,6 @@ homeassistant:
   packages: !include_dir_named packages
 ```
 
-2. Run Docker container __from homeassistant directory itself__ `$ docker run --rm -it -v "$(PWD)"/config:/config --name update-cloudflare-ip sineverba/update-cloudflare-ip:0.1.0`
+2. Run Docker container __from homeassistant directory itself__ `$ docker run --rm -it -v "$(PWD)"/config:/config --name update-cloudflare-ip sineverba/update-cloudflare-ip:1.0.0`
 
 3. Check in Home Assistant if file is working before restart
