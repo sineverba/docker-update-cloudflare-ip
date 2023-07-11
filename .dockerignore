@@ -1,0 +1,5 @@
+.semaphore/
+config
+*.md
+LICENSE
+Makefile
