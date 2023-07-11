@@ -1,6 +1,6 @@
 IMAGE_NAME=sineverba/update-cloudflare-ip
 CONTAINER_NAME=update-cloudflare-ip
-APP_VERSION=1.1.0-dev
+APP_VERSION=1.2.0-dev
 BUILDX_VERSION=0.11.1
 BINFMT_VERSION=qemu-v7.0.0-28
 TOPDIR=$(PWD)
