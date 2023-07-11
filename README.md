@@ -61,6 +61,6 @@ homeassistant:
   packages: !include_dir_named packages
 ```
 
-2. Run Docker container __from homeassistant directory itself__ `$ docker run --rm -it -v "$(PWD)"/config:/config --name update-cloudflare-ip sineverba/update-cloudflare-ip:1.1.0`
+2. Run Docker container __from homeassistant directory itself__ `$ docker run --rm -it -v "$(PWD)"/config:/config --name update-cloudflare-ip sineverba/update-cloudflare-ip:1.2.0`
 
 3. Check in Home Assistant if file is working before restart
