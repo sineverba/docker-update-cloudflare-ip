@@ -1,13 +1,16 @@
 IMAGE_NAME=sineverba/update-cloudflare-ip
 CONTAINER_NAME=update-cloudflare-ip
 APP_VERSION=1.2.0-dev
-BUILDX_VERSION=0.11.1
+ALPINE_VERSION=3.18.5
+BUILDX_VERSION=0.12.0
 BINFMT_VERSION=qemu-v7.0.0-28
 TOPDIR=$(PWD)
 
 build:
 	docker build \
-		--tag $(IMAGE_NAME):$(APP_VERSION) "."
+		--build-arg ALPINE_VERSION=$(ALPINE_VERSION) \
+		--tag $(IMAGE_NAME):$(APP_VERSION) \
+		"."
 
 preparemulti:
 	mkdir -vp ~/.docker/cli-plugins
@@ -31,7 +34,7 @@ multi:
 
 test:
 	docker run --rm -it --entrypoint cat --name $(CONTAINER_NAME) $(IMAGE_NAME):$(APP_VERSION) /etc/os-release | grep "Alpine Linux"
-	docker run --rm -it --entrypoint cat --name $(CONTAINER_NAME) $(IMAGE_NAME):$(APP_VERSION) /etc/os-release | grep "3.18.2"
+	docker run --rm -it --entrypoint cat --name $(CONTAINER_NAME) $(IMAGE_NAME):$(APP_VERSION) /etc/os-release | grep $(ALPINE_VERSION)
 
 inspect:
 	docker run \
@@ -48,5 +51,5 @@ spin:
 	$(IMAGE_NAME):$(VERSION)
 
 destroy:
-	docker image rm alpine:3.18.2
+	-docker image rm alpine:$(ALPINE_VERSION)
 	docker image rm $(IMAGE_NAME):$(APP_VERSION)
