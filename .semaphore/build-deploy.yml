@@ -23,9 +23,11 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: update-cloudflare-ip
     - name: BUILDX_VERSION
-      value: 0.11.1
+      value: 0.12.0
     - name: BINFMT_VERSION
       value: qemu-v7.0.0-28
+    - name: ALPINE_VERSION
+      value: 3.18.5
     - name: PLATFORMS
       value: linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64
 
@@ -53,6 +55,7 @@ blocks:
             - >-
               docker buildx build 
               --platform $PLATFORMS 
+              --build-arg ALPINE_VERSION=$ALPINE_VERSION 
               --tag $DOCKER_USERNAME/$DOCKER_IMAGE:$SEMAPHORE_GIT_TAG_NAME 
               --tag $DOCKER_USERNAME/$DOCKER_IMAGE:latest 
               --push .

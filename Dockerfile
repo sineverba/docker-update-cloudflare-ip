@@ -1,4 +1,6 @@
-FROM alpine:3.18.2
+# Define base env
+ARG ALPINE_VERSION=3.18.4
+FROM alpine:${ALPINE_VERSION}
 RUN apk update && \
     apk add --upgrade apk-tools && \
     apk upgrade --available && \
