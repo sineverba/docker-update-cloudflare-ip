@@ -14,7 +14,7 @@ global_job_config:
     - name: DOCKER_IMAGE
       value: update-cloudflare-ip
     - name: ALPINE_VERSION
-      value: 3.18.5
+      value: 3.19.1
 
 blocks:
   - name: 'Build and test'
@@ -25,12 +25,24 @@ blocks:
         - name: 'Build and test'
           commands:
             - checkout
-            - docker build --build-arg ALPINE_VERSION=$ALPINE_VERSION --tag $DOCKER_USERNAME/$DOCKER_IMAGE .
-            - docker run --rm -it --entrypoint cat --name $DOCKER_IMAGE $DOCKER_USERNAME/$DOCKER_IMAGE /etc/os-release | grep "Alpine Linux"
-            - docker run --rm -it --entrypoint cat --name $DOCKER_IMAGE $DOCKER_USERNAME/$DOCKER_IMAGE /etc/os-release | grep $ALPINE_VERSION
-
-promotions:
-  - name: Deploy
-    pipeline_file: build-deploy.yml
-    auto_promote:
-      when: "result = 'passed' and tag =~ '.*'"
+            - >-
+              docker build 
+              --build-arg ALPINE_VERSION=$ALPINE_VERSION 
+              --tag $DOCKER_USERNAME/$DOCKER_IMAGE 
+              "."
+            - >-
+              docker run 
+              --rm 
+              -it 
+              --entrypoint cat 
+              --name $DOCKER_IMAGE 
+              $DOCKER_USERNAME/$DOCKER_IMAGE 
+              /etc/os-release | grep "Alpine Linux"
+            - >-
+              docker run 
+              --rm 
+              -it 
+              --entrypoint cat 
+              --name $DOCKER_IMAGE 
+              $DOCKER_USERNAME/$DOCKER_IMAGE 
+              /etc/os-release | grep $ALPINE_VERSION

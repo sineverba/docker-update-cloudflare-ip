@@ -1,8 +1,8 @@
 IMAGE_NAME=sineverba/update-cloudflare-ip
 CONTAINER_NAME=update-cloudflare-ip
 APP_VERSION=1.2.0-dev
-ALPINE_VERSION=3.18.5
-BUILDX_VERSION=0.12.0
+ALPINE_VERSION=3.19.1
+BUILDX_VERSION=0.13.1
 BINFMT_VERSION=qemu-v7.0.0-28
 TOPDIR=$(PWD)
 
@@ -33,8 +33,20 @@ multi:
 		--tag $(IMAGE_NAME):$(APP_VERSION) "."
 
 test:
-	docker run --rm -it --entrypoint cat --name $(CONTAINER_NAME) $(IMAGE_NAME):$(APP_VERSION) /etc/os-release | grep "Alpine Linux"
-	docker run --rm -it --entrypoint cat --name $(CONTAINER_NAME) $(IMAGE_NAME):$(APP_VERSION) /etc/os-release | grep $(ALPINE_VERSION)
+	docker run \
+		--rm \
+		-it \
+		--entrypoint cat \
+		--name $(CONTAINER_NAME) \
+		$(IMAGE_NAME):$(APP_VERSION) \
+		/etc/os-release | grep "Alpine Linux"
+	docker run \
+		--rm \
+		-it \
+		--entrypoint cat \
+		--name $(CONTAINER_NAME) \
+		$(IMAGE_NAME):$(APP_VERSION) \
+		/etc/os-release | grep $(ALPINE_VERSION)
 
 inspect:
 	docker run \
