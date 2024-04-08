@@ -12,6 +12,8 @@ Cloudflare is a trademark of Cloudflare itself.
 | CI / CD | Status |
 | ------- | ------ |
 | Semaphore | [![Build Status](https://sineverba.semaphoreci.com/badges/docker-update-cloudflare-ip/branches/master.svg?style=shields&key=941be431-667e-48be-ac26-0e15e69f934d)](https://sineverba.semaphoreci.com/projects/docker-update-cloudflare-ip) |
+| CircleCI | [![CircleCI](https://dl.circleci.com/status-badge/img/gh/sineverba/docker-update-cloudflare-ip/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/sineverba/docker-update-cloudflare-ip/tree/master) |
+| Docker Hub | `docker pull sineverba/update-cloudflare-ip:1.4.0` - [Link to image](https://hub.docker.com/repository/docker/sineverba/update-cloudflare-ip/general) |
 
 
 ## Available architectures
